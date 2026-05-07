@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}About | Carter Michaelis{% endblock %}
 
@@ -29,23 +30,16 @@
   .about-section + .about-section { border-top: 1px solid #e9ecef; }
 
   /* ── Headshot ── */
-  .headshot-box {
+  .headshot-img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
     border-radius: 50%;
-    background: #e9ecef;
     border: 4px solid #4ea8de;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #6c757d;
-    font-size: .85rem;
-    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,.15);
     margin: 0 auto 1.5rem;
-    overflow: hidden;
+    display: block;
   }
-  .headshot-box i { font-size: 3.5rem; color: #adb5bd; margin-bottom: .4rem; }
 
   /* ── Section headings ── */
   .section-label {
@@ -150,10 +144,9 @@
     <div class="row align-items-center g-5">
 
       <div class="col-md-4 text-center">
-        <div class="headshot-box">
-          <i class="bi bi-person"></i>
-          <span>Upload headshot<br>via admin</span>
-        </div>
+        <img src="{% static 'images/headshot2.jpg' %}"
+             alt="Carter Michaelis"
+             class="headshot-img" />
         <p class="fw-semibold mb-0" style="color:#0d1b2a;">Carter Michaelis</p>
         <p class="text-muted" style="font-size:.9rem;">Mission, KS</p>
       </div>
