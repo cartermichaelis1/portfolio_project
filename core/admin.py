@@ -9,6 +9,13 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('title', 'summary', 'tools_used')
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ('created_at',)
+    fieldsets = (
+        ('Basic Info', {'fields': ('title', 'slug', 'category', 'is_featured')}),
+        ('Content', {'fields': ('summary', 'business_problem', 'tools_used', 'key_features', 'role_contribution', 'biggest_challenge', 'lessons_learned')}),
+        ('Images', {'fields': ('image', 'image_two')}),
+        ('Links', {'fields': ('github_link', 'demo_link')}),
+        ('Metadata', {'fields': ('created_at',)}),
+    )
 
 
 @admin.register(Skill)

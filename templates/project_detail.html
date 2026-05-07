@@ -215,7 +215,24 @@
       <!-- ── Right column: image + links ── -->
       <div class="col-lg-5">
 
-        <!-- Screenshot -->
+        <!-- Dual image layout when image_two exists -->
+        {% if project.image_two %}
+        <div class="detail-card">
+          <p class="detail-label">Visualizations</p>
+          {% if project.image %}
+          <div style="margin-bottom: 1.25rem;">
+            <img src="{{ project.image.url }}" alt="Iris Dataset" style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block;" />
+            <p style="text-align:center; font-size:.85rem; font-weight:600; color:#555; margin:.5rem 0 0;">Iris Dataset</p>
+          </div>
+          {% endif %}
+          <div>
+            <img src="{{ project.image_two.url }}" alt="Machine Learning" style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block;" />
+            <p style="text-align:center; font-size:.85rem; font-weight:600; color:#555; margin:.5rem 0 0;">Machine Learning</p>
+          </div>
+        </div>
+
+        <!-- Single image layout for all other projects -->
+        {% else %}
         <div class="detail-card">
           <p class="detail-label">Screenshot</p>
           {% if project.image %}
@@ -228,8 +245,9 @@
             </div>
           {% endif %}
         </div>
+        {% endif %}
 
-        <!-- Links -->
+        <!-- Links - hide demo only for ML project with image_two -->
         {% if project.github_link or project.demo_link %}
         <div class="detail-card">
           <p class="detail-label">Links</p>

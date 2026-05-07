@@ -22,6 +22,7 @@ class Project(models.Model):
     biggest_challenge = models.TextField()
     lessons_learned = models.TextField()
     image = models.ImageField(upload_to='projects/', blank=True, null=True)
+    image_two = models.ImageField(upload_to='projects/', blank=True, null=True)
     github_link = models.URLField(blank=True)
     demo_link = models.URLField(blank=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='other')
