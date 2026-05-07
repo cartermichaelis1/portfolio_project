@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Resume | Carter Michaelis{% endblock %}
+
+{% block extra_css %}
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2d45 100%);
+    color: #fff;
+    padding: 4rem 1rem 3.5rem;
+    text-align: center;
+  }
+  .page-header .eyebrow {
+    color: #4ea8de;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .btn-download {
+    background: #4ea8de;
+    color: #0d1b2a;
+    font-weight: 700;
+    padding: .65rem 1.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: .95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    transition: background .2s;
+  }
+  .btn-download:hover { background: #79bfe8; color: #0d1b2a; }
+
+  /* ── PDF viewer ── */
+  .pdf-wrapper {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0,0,0,.1);
+    overflow: hidden;
+  }
+  .pdf-embed {
+    width: 100%;
+    height: 80vh;
+    min-height: 600px;
+    border: none;
+    display: block;
+  }
+
+  /* ── Fallback for browsers that block PDF embeds ── */
+  .pdf-fallback {
+    display: none;
+    padding: 3rem;
+    text-align: center;
+    color: #555;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <p class="eyebrow">My Resume</p>
+  <h1>Carter Michaelis</h1>
+  <a href="{% static 'resume/CarterMichaelis_Resume.pdf' %}"
+     download="CarterMichaelis_Resume.pdf"
+     class="btn-download">
+    <i class="bi bi-download"></i> Download PDF
+  </a>
+</div>
+
+<section class="py-5" style="background:#f8f9fa;">
+  <div class="container">
+    <div class="pdf-wrapper">
+      <embed
+        src="{% static 'resume/CarterMichaelis_Resume.pdf' %}"
+        type="application/pdf"
+        class="pdf-embed"
+        title="Carter Michaelis Resume"
+      />
+    </div>
+
+    <!-- Shown if browser cannot display the embedded PDF -->
+    <div class="text-center mt-4">
+      <p class="text-muted" style="font-size:.9rem;">
+        Can't see the PDF?
+        <a href="{% static 'resume/CarterMichaelis_Resume.pdf' %}"
+           target="_blank" rel="noopener"
+           style="color:#4ea8de; font-weight:600;">
+          Open it in a new tab
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

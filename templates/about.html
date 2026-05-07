@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}About | Carter Michaelis{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* ── Page header ── */
+  .page-header {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2d45 100%);
+    color: #fff;
+    padding: 4rem 1rem 3.5rem;
+    text-align: center;
+  }
+  .page-header .eyebrow {
+    color: #4ea8de;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: 800;
+  }
+
+  /* ── Layout ── */
+  .about-section { padding: 4rem 0; }
+  .about-section + .about-section { border-top: 1px solid #e9ecef; }
+
+  /* ── Headshot ── */
+  .headshot-box {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #e9ecef;
+    border: 4px solid #4ea8de;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #6c757d;
+    font-size: .85rem;
+    text-align: center;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+  }
+  .headshot-box i { font-size: 3.5rem; color: #adb5bd; margin-bottom: .4rem; }
+
+  /* ── Section headings ── */
+  .section-label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #4ea8de;
+  }
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #0d1b2a;
+    margin-top: .2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Education card ── */
+  .edu-card {
+    border-left: 4px solid #4ea8de;
+    background: #fff;
+    border-radius: 0 8px 8px 0;
+    padding: 1.4rem 1.6rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  }
+  .edu-card .degree {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0d1b2a;
+  }
+  .edu-card .school {
+    font-size: 1rem;
+    color: #1b6fa8;
+    font-weight: 600;
+  }
+  .edu-card .detail {
+    color: #6c757d;
+    font-size: .9rem;
+    margin-top: .25rem;
+  }
+
+  /* ── Experience timeline ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: .45rem;
+    top: .5rem;
+    bottom: .5rem;
+    width: 2px;
+    background: #dee2e6;
+  }
+  .timeline-item { position: relative; margin-bottom: 2rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.6rem;
+    top: .45rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4ea8de;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #4ea8de;
+  }
+  .timeline-item .role {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0d1b2a;
+  }
+  .timeline-item .company {
+    font-weight: 600;
+    color: #1b6fa8;
+    font-size: .95rem;
+  }
+  .timeline-item .period {
+    font-size: .82rem;
+    color: #6c757d;
+    margin-bottom: .5rem;
+  }
+  .timeline-item p {
+    color: #555;
+    font-size: .95rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Page header ── -->
+<div class="page-header">
+  <p class="eyebrow">Get to know me</p>
+  <h1>About Me</h1>
+</div>
+
+<div class="container">
+
+  <!-- ── Bio + headshot ── -->
+  <section class="about-section">
+    <div class="row align-items-center g-5">
+
+      <div class="col-md-4 text-center">
+        <div class="headshot-box">
+          <i class="bi bi-person"></i>
+          <span>Upload headshot<br>via admin</span>
+        </div>
+        <p class="fw-semibold mb-0" style="color:#0d1b2a;">Carter Michaelis</p>
+        <p class="text-muted" style="font-size:.9rem;">Mission, KS</p>
+      </div>
+
+      <div class="col-md-8">
+        <p class="section-label">My Story</p>
+        <h2 class="section-title">Who I Am</h2>
+        <p style="color:#444; font-size:1.05rem; line-height:1.85;">
+          I'm a graduating senior at Baylor University earning a BBA in Marketing and Management
+          Information Systems (May 2026). Throughout my time at Baylor I've gained hands-on
+          experience with AI tools, data analytics, and digital marketing through both coursework
+          and two internships at Martin City Marketing in Kansas City. After graduation I'm joining
+          Martin City Marketing full time as a Marketing Operations &amp; Performance Specialist,
+          focusing on automotive dealership clients. I'm passionate about bridging the gap between
+          marketing strategy and technology.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Education ── -->
+  <section class="about-section">
+    <p class="section-label">Where I Studied</p>
+    <h2 class="section-title">Education</h2>
+
+    <div class="edu-card">
+      <p class="degree">Bachelor of Business Administration (BBA)</p>
+      <p class="school">Baylor University &mdash; Hankamer School of Business</p>
+      <p class="detail">
+        <strong>Majors:</strong> Marketing &amp; Management Information Systems
+      </p>
+      <p class="detail">
+        <strong>Graduation:</strong> May 2026 &nbsp;&middot;&nbsp;
+        <strong>Location:</strong> Waco, TX
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section class="about-section">
+    <p class="section-label">Where I've Worked</p>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="role">Marketing Operations &amp; Performance Specialist</p>
+        <p class="company">Martin City Marketing &mdash; Kansas City, MO</p>
+        <p class="period">June 2026 &mdash; Present &nbsp;(Full-Time)</p>
+        <p>
+          Joining the team full time after graduation to lead marketing operations and performance
+          analytics for automotive dealership clients, with a focus on paid media strategy and
+          data-driven campaign optimization.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="role">Marketing Intern</p>
+        <p class="company">Martin City Marketing &mdash; Kansas City, MO</p>
+        <p class="period">2024 &mdash; 2025 &nbsp;(Two Internships)</p>
+        <p>
+          Gained hands-on experience in digital marketing, paid media advertising, and analytics
+          working with automotive dealership accounts. Supported campaigns across Google Ads,
+          Meta Ads, and GA4 while developing skills in marketing strategy and client reporting.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+{% endblock %}

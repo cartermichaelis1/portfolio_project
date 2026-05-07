@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Carter Michaelis{% endblock %}
+
+{% block extra_css %}
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2d45 100%);
+    color: #fff;
+    padding: 4rem 1rem 3.5rem;
+    text-align: center;
+  }
+  .page-header .eyebrow {
+    color: #4ea8de;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    font-weight: 800;
+    margin-bottom: .75rem;
+  }
+  .category-badge {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: rgba(78,168,222,.2);
+    color: #a8d8f0;
+    padding: .35rem .85rem;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  /* ── Detail card ── */
+  .detail-card {
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    padding: 2rem 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .detail-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #4ea8de;
+    margin-bottom: .4rem;
+  }
+  .detail-card h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0d1b2a;
+    margin-bottom: .75rem;
+  }
+  .detail-card p {
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 0;
+    font-size: .97rem;
+  }
+
+  /* ── Tools chips ── */
+  .tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-top: .25rem;
+  }
+  .tool-chip {
+    background: #e8f4fd;
+    color: #1b6fa8;
+    font-size: .82rem;
+    font-weight: 600;
+    padding: .3rem .85rem;
+    border-radius: 20px;
+  }
+
+  /* ── Screenshot ── */
+  .screenshot-box {
+    background: #e9ecef;
+    border-radius: 10px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #6c757d;
+    font-size: .9rem;
+    border: 2px dashed #ced4da;
+  }
+  .screenshot-box i { font-size: 3rem; color: #adb5bd; margin-bottom: .5rem; }
+  .screenshot-img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    object-fit: cover;
+    max-height: 380px;
+  }
+
+  /* ── Buttons ── */
+  .btn-github {
+    background: #0d1b2a;
+    color: #fff;
+    font-weight: 600;
+    padding: .6rem 1.4rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: .9rem;
+    transition: background .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .btn-github:hover { background: #1b2d45; color: #fff; }
+
+  .btn-demo {
+    background: #4ea8de;
+    color: #0d1b2a;
+    font-weight: 600;
+    padding: .6rem 1.4rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: .9rem;
+    transition: background .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .btn-demo:hover { background: #79bfe8; color: #0d1b2a; }
+
+  .btn-back {
+    color: #4ea8de;
+    font-size: .9rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+  }
+  .btn-back:hover { color: #1b6fa8; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Header ── -->
+<div class="page-header">
+  <p class="eyebrow">Project Detail</p>
+  <h1>{{ project.title }}</h1>
+  <span class="category-badge">{{ project.get_category_display }}</span>
+</div>
+
+<section class="py-5" style="background:#f8f9fa;">
+  <div class="container">
+
+    <div class="mb-4">
+      <a href="{% url 'projects' %}" class="btn-back">
+        <i class="bi bi-arrow-left"></i> Back to Projects
+      </a>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- ── Left column: all text fields ── -->
+      <div class="col-lg-7">
+
+        <div class="detail-card">
+          <p class="detail-label">Summary</p>
+          <p>{{ project.summary }}</p>
+        </div>
+
+        <div class="detail-card">
+          <p class="detail-label">Business Problem</p>
+          <p>{{ project.business_problem }}</p>
+        </div>
+
+        <div class="detail-card">
+          <p class="detail-label">Tools Used</p>
+          <div class="tools-list">
+            {% for tool in tools %}
+            <span class="tool-chip">{{ tool }}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <p class="detail-label">Key Features</p>
+          <p>{{ project.key_features }}</p>
+        </div>
+
+        <div class="detail-card">
+          <p class="detail-label">My Role &amp; Contribution</p>
+          <p>{{ project.role_contribution }}</p>
+        </div>
+
+        <div class="detail-card">
+          <p class="detail-label">Biggest Challenge</p>
+          <p>{{ project.biggest_challenge }}</p>
+        </div>
+
+        <div class="detail-card">
+          <p class="detail-label">What I Learned</p>
+          <p>{{ project.lessons_learned }}</p>
+        </div>
+
+      </div>
+
+      <!-- ── Right column: image + links ── -->
+      <div class="col-lg-5">
+
+        <!-- Screenshot -->
+        <div class="detail-card">
+          <p class="detail-label">Screenshot</p>
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }} screenshot" class="screenshot-img" />
+          {% else %}
+            <div class="screenshot-box">
+              <i class="bi bi-image"></i>
+              <span>No image uploaded yet</span>
+              <small class="mt-1 text-muted">Add via admin panel</small>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Links -->
+        {% if project.github_link or project.demo_link %}
+        <div class="detail-card">
+          <p class="detail-label">Links</p>
+          <div class="d-flex flex-wrap gap-3 mt-1">
+            {% if project.github_link %}
+            <a href="{{ project.github_link }}" target="_blank" rel="noopener" class="btn-github">
+              <i class="bi bi-github"></i> GitHub Repo
+            </a>
+            {% endif %}
+            {% if project.demo_link %}
+            <a href="{{ project.demo_link }}" target="_blank" rel="noopener" class="btn-demo">
+              <i class="bi bi-box-arrow-up-right"></i> Live Demo
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div><!-- /row -->
+
+  </div>
+</section>
+
+{% endblock %}

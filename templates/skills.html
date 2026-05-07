@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}Skills | Carter Michaelis{% endblock %}
+
+{% block extra_css %}
+<style>
+  .page-header {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2d45 100%);
+    color: #fff;
+    padding: 4rem 1rem 3.5rem;
+    text-align: center;
+  }
+  .page-header .eyebrow {
+    color: #4ea8de;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: .6rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: 800;
+  }
+
+  /* ── Category card ── */
+  .category-card {
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    padding: 1.8rem 2rem;
+    height: 100%;
+  }
+  .category-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0d1b2a;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 3px solid #4ea8de;
+    padding-bottom: .6rem;
+    margin-bottom: 1.4rem;
+  }
+
+  /* ── Skill row ── */
+  .skill-row {
+    margin-bottom: 1.1rem;
+  }
+  .skill-name {
+    font-size: .95rem;
+    font-weight: 600;
+    color: #1b2d45;
+    margin-bottom: .35rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .skill-level {
+    font-size: .75rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  /* ── Proficiency bar ── */
+  .proficiency-track {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .proficiency-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #4ea8de, #1b6fa8);
+    transition: width .6s ease;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+  <p class="eyebrow">What I Know</p>
+  <h1>Skills</h1>
+</div>
+
+<section class="py-5" style="background:#f8f9fa; min-height:60vh;">
+  <div class="container">
+    <div class="row g-4">
+      {% for group in groups %}
+      <div class="col-md-6 col-lg-4">
+        <div class="category-card">
+          <p class="category-title">{{ group.label }}</p>
+
+          {% for skill in group.skills %}
+          <div class="skill-row">
+            <div class="skill-name">
+              <span>{{ skill.name }}</span>
+              <span class="skill-level">{{ skill.get_proficiency_display }}</span>
+            </div>
+            <div class="proficiency-track">
+              <div class="proficiency-fill" style="width: {% widthratio skill.proficiency 5 100 %}%;"></div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
