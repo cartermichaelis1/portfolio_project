@@ -109,10 +109,11 @@
   }
 
   .screenshot-img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     object-fit: contain;
-    border-radius: 6px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
     box-shadow: 0 4px 16px rgba(0, 0, 0, .1);
     display: block;
   }
@@ -246,14 +247,14 @@
           {% if project.image %}
           <div style="margin-bottom: 1.25rem;">
             <img src="{{ project.image.url }}" alt="Iris Dataset"
-              style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block;" />
+              style="width:100%; height:auto; border-radius:8px; border:1px solid #dee2e6; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block;" />
             <p style="text-align:center; font-size:.85rem; font-weight:600; color:#555; margin:.5rem 0 0;">Iris Dataset
             </p>
           </div>
           {% endif %}
           <div>
             <img src="{{ project.image_two.url }}" alt="Machine Learning"
-              style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block;" />
+              style="width:100%; height:auto; border-radius:8px; border:1px solid #dee2e6; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block;" />
             <p style="text-align:center; font-size:.85rem; font-weight:600; color:#555; margin:.5rem 0 0;">Machine
               Learning</p>
           </div>
